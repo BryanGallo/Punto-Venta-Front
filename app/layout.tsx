@@ -16,7 +16,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="es">
-            <body className={`${outfit.className} bg-gray-200`}>
+            <body className={`${outfit.className}`}>
                 {children}
             </body>
         </html>
