@@ -1,21 +1,21 @@
-import LoginForm from "@/components/auth/LoginForm";
+import ForgotPasswordForm from "@/components/auth/ForgotPasswordForm";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "PV - Iniciar Sesión",
-    description: "Iniciar Sesión",
+    title: "PV - ",
+    description: "Recupera tu contraseña",
 };
 
-export default function LoginPage() {
+export default function ForgotPasswordPage() {
     return (
         <>
             <h1 className="font-black text-6xl text-purple-950">
-                Iniciar Sesión
+                Recuperar Contraseña
             </h1>
             <p className="text-3xl font-bold">
                 y vende tus <span className="text-amber-500">productos</span>
             </p>
-            <LoginForm />
+            <ForgotPasswordForm />
         </>
     );
 }
