@@ -10,7 +10,7 @@ export default function LoginPage() {
     return (
         <>
             <h1 className="font-black text-6xl text-purple-950">
-                Iniciar Sesión
+                Inicia Sesión
             </h1>
             <p className="text-3xl font-bold">
                 y vende tus <span className="text-amber-500">productos</span>

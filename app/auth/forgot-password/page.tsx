@@ -10,10 +10,10 @@ export default function ForgotPasswordPage() {
     return (
         <>
             <h1 className="font-black text-6xl text-purple-950">
-                Recuperar Contraseña
+                Olvidaste tu Contraseña
             </h1>
             <p className="text-3xl font-bold">
-                y vende tus <span className="text-amber-500">productos</span>
+                aqui <span className="text-amber-500">puedes reestablecerla</span>
             </p>
             <ForgotPasswordForm />
         </>
