@@ -1,4 +1,10 @@
 import RegisterForm from "@/components/auth/RegisterForm";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "PV - Register",
+    description: "Registrate",
+};
 
 export default function RegisterPage() {
     return (
