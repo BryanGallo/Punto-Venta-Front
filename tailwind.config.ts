@@ -25,6 +25,9 @@ export default {
           '950': '#00342c',
         },
       },
+      backgroundImage:{
+        "auth":"url('/grafico.svg')"
+      }
     },
   },
   plugins: [],
