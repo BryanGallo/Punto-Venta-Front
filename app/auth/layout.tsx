@@ -8,7 +8,7 @@ export default function AuthLayout({
     return (
         <>
             <div className="lg:grid lg:grid-cols-2 lg:min-h-screen">
-                <div className="bg-purple-950 min-h-32 bg-auth">
+                <div className="bg-purple-950 min-h-32 lg:bg-auth lg:bg-30 bg-no-repeat bg-left-bottom">
                     <Logo />
                 </div>
                 <div className="p-3 lg:py-10 flex flex-col justify-center items-center">

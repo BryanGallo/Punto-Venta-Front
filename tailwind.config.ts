@@ -27,6 +27,9 @@ export default {
       },
       backgroundImage:{
         "auth":"url('/grafico.svg')"
+      },
+      backgroundSize:{
+        '30':'30rem'
       }
     },
   },
