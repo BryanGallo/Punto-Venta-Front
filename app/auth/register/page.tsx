@@ -17,9 +17,12 @@ export default function RegisterPage() {
                 y vende tus <span className="text-amber-500">productos</span>
             </p>
             <RegisterForm />
-            <nav>
-                <Link href={"/auth/login"}>
-                    Ya tienes cuenta ? Iniciar Sesión
+            <nav className="mt-10 flex flex-col space-y-2">
+                <Link
+                    href={"/auth/login"}
+                    className="text-center text-gray-500"
+                >
+                    Ya tienes cuenta? Iniciar Sesión
                 </Link>
             </nav>
         </>
