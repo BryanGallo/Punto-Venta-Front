@@ -19,10 +19,16 @@ export default function LoginPage() {
             <LoginForm />
             <nav className="mt-10 flex flex-col space-y-2">
                 <Link
+                    href={"/auth/forgot-password"}
+                    className="text-center text-gray-500"
+                >
+                    Olvidaste tu contraseña? Restablecer
+                </Link>
+                <Link
                     href={"/auth/register"}
                     className="text-center text-gray-500"
                 >
-                    No tienes cuenta? Crea una
+                    No tienes cuenta? Crea una!
                 </Link>
             </nav>
         </>
