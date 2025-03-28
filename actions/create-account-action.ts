@@ -19,4 +19,9 @@ export async function register(formData: FormData) {
     });
 
     console.log(errors);
+
+    const url=`${process.env.API_URL}/auth/register`
+
+    console.log(url);
+    
 }
