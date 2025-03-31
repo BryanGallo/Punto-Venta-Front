@@ -20,8 +20,28 @@ export async function register(formData: FormData) {
 
     console.log(errors);
 
-    const url=`${process.env.API_URL}/auth/register`
+    if (!register.success) {
+        return {};
+    }
+
+    const url = `${process.env.API_URL}/auth/register`;
 
     console.log(url);
+
+    const req = await fetch(url, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            name: register.data.name,
+            email: register.data.email,
+            password: register.data.password,
+        }),
+    });
+
+    const json = await req.json();
+
+    console.log(json);
     
 }
