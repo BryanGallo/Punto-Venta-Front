@@ -8,4 +8,4 @@
 npm run dev
 ```
 
-Puerto por defecto [http://localhost:3000](http://localhost:3000).
+Puerto por defecto [http://localhost:3000] o (http://localhost:3001).
