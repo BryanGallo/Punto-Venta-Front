@@ -1,9 +1,12 @@
 "use server";
 import { RegisterSchema } from "../src/schemas/index";
 
-export async function register(formData: FormData) {
-    // console.log(formData);
+type ActionStateType = {
+    errors: string[];
+};
 
+export async function register(prevState: ActionStateType, formData: FormData) {
+    console.log(prevState);
     const registerDate = {
         email: formData.get("email"),
         name: formData.get("name"),
@@ -14,19 +17,14 @@ export async function register(formData: FormData) {
     //validar
     const register = RegisterSchema.safeParse(registerDate);
 
-    const errors = register.error?.errors.map((error) => {
-        return error.message;
-    });
-
-    console.log(errors);
-
     if (!register.success) {
-        return {};
+        const errors = register.error.errors.map((error) => {
+            return error.message;
+        });
+        return { errors };
     }
 
     const url = `${process.env.API_URL}/auth/register`;
-
-    console.log(url);
 
     const req = await fetch(url, {
         method: "POST",
@@ -42,6 +40,7 @@ export async function register(formData: FormData) {
 
     const json = await req.json();
 
-    console.log(json);
-    
+    return {
+        errors: [],
+    };
 }
