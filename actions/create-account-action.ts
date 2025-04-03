@@ -35,10 +35,14 @@ export async function register(prevState: ActionStateType, formData: FormData) {
             name: register.data.name,
             email: register.data.email,
             password: register.data.password,
+            // TODO: Validar si se deja el rol quemado
+            roles: [1],
         }),
     });
 
     const json = await req.json();
+
+    console.log(json);
 
     return {
         errors: [],
