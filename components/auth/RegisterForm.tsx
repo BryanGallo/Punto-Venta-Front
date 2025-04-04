@@ -61,6 +61,10 @@ export default function RegisterForm() {
                 value="Registrarme"
                 className="bg-purple-950 hover:bg-purple-800 w-full p-3 rounded-lg text-white font-black  text-xl cursor-pointer block"
             />
+
+            {state.errors.map((error, index) => (
+                <ErrorMessage error={error} key={index} />
+            ))}
         </form>
     );
 }
