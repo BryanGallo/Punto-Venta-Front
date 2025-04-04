@@ -13,7 +13,7 @@ export const RegisterSchema = z
         password_confirmation: z
             .string()
             .min(6, {
-                message: "La contraseña debe ser de mínimo de 6 caracteres",
+                message: "Las contraseñas no son iguales",
             }),
     })
     .refine((data) => data.password === data.password_confirmation,{
