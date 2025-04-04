@@ -1,7 +1,8 @@
 "use client";
 
 import { register } from "@/actions/create-account-action";
-import { useActionState } from "react";
+import { useActionState, useState } from "react";
+import ErrorMessage from "../ui/ErrorMessage";
 
 export default function RegisterForm() {
     // const prueba= 1
@@ -10,6 +11,24 @@ export default function RegisterForm() {
     });
     console.log(state);
     
+    // if (state.success) {
+    //     reset(); // Limpia el formulario solo si la acción fue exitosa
+    //   }
+
+    const [formValues, setFormValues] = useState({
+        email: "",
+        name: "",
+        password: "",
+        password_confirmation: "",
+    });
+
+    const handle = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        setFormValues((prevState) => ({
+            ...prevState,
+            [e.target.name]: e.target.value,
+        }));
+    };
+
     return (
         <form className="mt-5 space-y-2" noValidate action={dispacth}>
             <div className="flex flex-col gap-2">
@@ -22,6 +41,8 @@ export default function RegisterForm() {
                     placeholder="Email de Registro"
                     className="w-full border border-gray-300 p-3 rounded-lg"
                     name="email"
+                    value={formValues.email}
+                    onChange={handle}
                 />
             </div>
 
@@ -32,6 +53,8 @@ export default function RegisterForm() {
                     placeholder="Nombre de Registro"
                     className="w-full border border-gray-300 p-3 rounded-lg"
                     name="name"
+                    value={formValues.name}
+                    onChange={handle}
                 />
             </div>
 
@@ -42,6 +65,8 @@ export default function RegisterForm() {
                     placeholder="Password de Registro"
                     className="w-full border border-gray-300 p-3 rounded-lg"
                     name="password"
+                    value={formValues.password}
+                    onChange={handle}
                 />
             </div>
 
@@ -53,6 +78,8 @@ export default function RegisterForm() {
                     placeholder="Repite Password de Registro"
                     className="w-full border border-gray-300 p-3 rounded-lg"
                     name="password_confirmation"
+                    value={formValues.password_confirmation}
+                    onChange={handle}
                 />
             </div>
 
