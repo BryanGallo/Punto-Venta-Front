@@ -3,18 +3,15 @@
 import { register } from "@/actions/create-account-action";
 import { useActionState, useState } from "react";
 import ErrorMessage from "../ui/ErrorMessage";
+import SuccessMessage from "../ui/SuccessMessage";
 
 export default function RegisterForm() {
     // const prueba= 1
     const [state, dispacth] = useActionState(register, {
         errors: [],
+        success: "",
     });
     console.log(state);
-    
-    // if (state.success) {
-    //     reset(); // Limpia el formulario solo si la acción fue exitosa
-    //   }
-
     const [formValues, setFormValues] = useState({
         email: "",
         name: "",
@@ -31,6 +28,7 @@ export default function RegisterForm() {
 
     return (
         <form className="mt-5 space-y-2" noValidate action={dispacth}>
+            {state.success && <SuccessMessage success={state.success} />}
             <div className="flex flex-col gap-2">
                 <label className="font-bold text-2xl" htmlFor="email">
                     Email
