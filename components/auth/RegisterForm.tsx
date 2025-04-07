@@ -1,23 +1,39 @@
 "use client";
 
 import { register } from "@/actions/create-account-action";
-import { useActionState, useState } from "react";
+import { useActionState, useEffect, useRef, useState } from "react";
 import ErrorMessage from "../ui/ErrorMessage";
 import SuccessMessage from "../ui/SuccessMessage";
 
 export default function RegisterForm() {
+    const ref = useRef<HTMLFormElement>(null);
     // const prueba= 1
     const [state, dispacth] = useActionState(register, {
         errors: [],
         success: "",
     });
     console.log(state);
+    //*State para inputs formularios
     const [formValues, setFormValues] = useState({
         email: "",
         name: "",
         password: "",
         password_confirmation: "",
     });
+
+    useEffect(() => {
+        if (state.success) {
+            //? useRef en este caso para resetea el formulario nativo
+            ref.current?.reset();
+            //? Debemos actualizar el state de los inputs ya que seguirán mostrando los datos antiguos porque React sigue controlando esos valores.
+            setFormValues({
+                email: "",
+                name: "",
+                password: "",
+                password_confirmation: "",
+            });
+        }
+    }, [state]);
 
     const handle = async (e: React.ChangeEvent<HTMLInputElement>) => {
         setFormValues((prevState) => ({
@@ -27,7 +43,7 @@ export default function RegisterForm() {
     };
 
     return (
-        <form className="mt-5 space-y-2" noValidate action={dispacth}>
+        <form ref={ref} className="mt-5 space-y-2" noValidate action={dispacth}>
             {state.success && <SuccessMessage success={state.success} />}
             <div className="flex flex-col gap-2">
                 <label className="font-bold text-2xl" htmlFor="email">
