@@ -1,8 +1,13 @@
 "use server";
-import { RegisterSchema } from "../src/schemas/index";
+import {
+    RegisterSchema,
+    SuccessSchema,
+    ErrorSchema,
+} from "../src/schemas/index";
 
 type ActionStateType = {
     errors: string[];
+    success: string;
 };
 
 export async function register(prevState: ActionStateType, formData: FormData) {
@@ -18,10 +23,10 @@ export async function register(prevState: ActionStateType, formData: FormData) {
     const register = RegisterSchema.safeParse(registerDate);
 
     if (!register.success) {
-        const errors = register.error.errors.map((error) => {
+        const errors = register.error.issues.map((error) => {
             return error.message;
         });
-        return { errors };
+        return { errors, success: prevState.success };
     }
 
     const url = `${process.env.API_URL}/auth/register`;
@@ -42,9 +47,19 @@ export async function register(prevState: ActionStateType, formData: FormData) {
 
     const json = await req.json();
 
-    console.log(json);
+    if (json.statusCode === 409) {
+        const { message } = ErrorSchema.parse(json);
+        return {
+            errors: message,
+            success: "",
+        };
+    }
+
+    const { message } = SuccessSchema.parse(json);
+    console.log(message);
 
     return {
         errors: [],
+        success: message,
     };
 }
