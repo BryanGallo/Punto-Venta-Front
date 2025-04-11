@@ -11,7 +11,6 @@ type ActionStateType = {
 };
 
 export async function register(prevState: ActionStateType, formData: FormData) {
-    console.log(prevState);
     const registerDate = {
         email: formData.get("email"),
         name: formData.get("name"),
