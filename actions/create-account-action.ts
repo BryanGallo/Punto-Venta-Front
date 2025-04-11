@@ -26,7 +26,7 @@ export async function register(prevState: ActionStateType, formData: FormData) {
         const errors = register.error.issues.map((error) => {
             return error.message;
         });
-        return { errors, success: prevState.success };
+        return { errors, success: "" };
     }
 
     const url = `${process.env.API_URL}/auth/register`;
