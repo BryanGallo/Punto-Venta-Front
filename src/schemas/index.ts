@@ -23,6 +23,15 @@ export const SuccessSchema = z.object({
     message: z.string(),
 });
 
+//*Este es usado para todo el auth
 export const ErrorSchema = z.object({
     message: z.string().array(),
+});
+
+export const LoginSchema = z.object({
+    email: z
+        .string()
+        .email({ message: "Email no valido" })
+        .min(1, { message: "El email es obligatorio" }),
+    password: z.string().min(1, { message: "La Contraseña es obligatoria" }),
 });
