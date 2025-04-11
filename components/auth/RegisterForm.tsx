@@ -1,12 +1,10 @@
 "use client";
 
 import { register } from "@/actions/create-account-action";
-import { useActionState, useEffect, useRef, useState } from "react";
+import { useActionState, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 export default function RegisterForm() {
-    const ref = useRef<HTMLFormElement>(null);
-    // const prueba= 1
     const [state, dispacth] = useActionState(register, {
         errors: [],
         success: "",
@@ -31,9 +29,8 @@ export default function RegisterForm() {
                 password: "",
                 password_confirmation: "",
             });
-            ref.current?.reset();
         }
-        
+
         if (state.errors) {
             state.errors.map((error) => toast.error(error));
         }
@@ -47,7 +44,7 @@ export default function RegisterForm() {
     };
 
     return (
-        <form ref={ref} className="mt-5 space-y-2" noValidate action={dispacth}>
+        <form className="mt-5 space-y-2" noValidate action={dispacth}>
             <div className="flex flex-col gap-2">
                 <label className="font-bold text-2xl" htmlFor="email">
                     Email
