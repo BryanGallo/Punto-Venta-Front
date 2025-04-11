@@ -2,8 +2,7 @@
 
 import { register } from "@/actions/create-account-action";
 import { useActionState, useEffect, useRef, useState } from "react";
-import ErrorMessage from "../ui/ErrorMessage";
-import SuccessMessage from "../ui/SuccessMessage";
+import { toast } from "react-toastify";
 
 export default function RegisterForm() {
     const ref = useRef<HTMLFormElement>(null);
@@ -23,8 +22,8 @@ export default function RegisterForm() {
 
     useEffect(() => {
         if (state.success) {
+            toast.success(state.success);
             //? useRef en este caso para resetea el formulario nativo
-            ref.current?.reset();
             //? Debemos actualizar el state de los inputs ya que seguirán mostrando los datos antiguos porque React sigue controlando esos valores.
             setFormValues({
                 email: "",
@@ -32,6 +31,11 @@ export default function RegisterForm() {
                 password: "",
                 password_confirmation: "",
             });
+            ref.current?.reset();
+        }
+        
+        if (state.errors) {
+            state.errors.map((error) => toast.error(error));
         }
     }, [state]);
 
@@ -44,7 +48,6 @@ export default function RegisterForm() {
 
     return (
         <form ref={ref} className="mt-5 space-y-2" noValidate action={dispacth}>
-            {state.success && <SuccessMessage success={state.success} />}
             <div className="flex flex-col gap-2">
                 <label className="font-bold text-2xl" htmlFor="email">
                     Email
@@ -102,10 +105,6 @@ export default function RegisterForm() {
                 value="Registrarme"
                 className="bg-purple-950 hover:bg-purple-800 w-full p-3 rounded-lg text-white font-black  text-xl cursor-pointer block"
             />
-
-            {state.errors.map((error, index) => (
-                <ErrorMessage error={error} key={index} />
-            ))}
         </form>
     );
 }
