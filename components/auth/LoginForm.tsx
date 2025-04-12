@@ -7,7 +7,6 @@ import { toast } from "react-toastify";
 export default function LoginForm() {
     const [state, dispach] = useActionState(login, {
         errors: [],
-        success: {},
     });
 
     console.log(state);
@@ -18,8 +17,6 @@ export default function LoginForm() {
     });
 
     useEffect(() => {
-        if (state.success) {
-        }
         if (state.errors) {
             state.errors.map((error) => toast.error(error));
         }

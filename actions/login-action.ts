@@ -1,25 +1,17 @@
 "use server";
 
-import { ErrorSchema, LoginSchema, SuccessSchema } from "@/src/schemas";
+import { ErrorSchema, LoginSchema } from "@/src/schemas";
 
 type ActionStateType = {
     errors: string[];
-    success: string;
 };
 
 export async function login(prevState: ActionStateType, formData: FormData) {
-    console.log(prevState);
-    console.log(formData.get("email"));
-
     const loginDate = {
         email: formData.get("email"),
         password: formData.get("password"),
     };
-
-    console.log(loginDate);
     const login = LoginSchema.safeParse(loginDate);
-
-    console.log(login);
 
     if (!login.success) {
         const error = login.error.issues.map((error) => {
@@ -27,7 +19,6 @@ export async function login(prevState: ActionStateType, formData: FormData) {
         });
         return {
             errors: error,
-            success: "",
         };
     }
 
@@ -46,21 +37,17 @@ export async function login(prevState: ActionStateType, formData: FormData) {
 
     const json = await req.json();
 
-    console.log(json);
+    // console.log(json);
+    // console.log(req.status);
 
-    if (json.statusCode === 401) {
+    if (!req.ok) {
         const { message } = ErrorSchema.parse(json);
         return {
             errors: message,
-            success: "",
         };
     }
 
-    const { message } = SuccessSchema.parse(json);
-    console.log(message);
-
     return {
         errors: [],
-        success: message,
     };
 }
