@@ -1,6 +1,7 @@
 "use server";
 
 import { ErrorSchema, LoginSchema } from "@/src/schemas";
+import { cookies } from "next/headers";
 
 type ActionStateType = {
     errors: string[];
@@ -46,6 +47,14 @@ export async function login(prevState: ActionStateType, formData: FormData) {
             errors: message,
         };
     }
+
+    //* Setear Cookie
+    (await cookies()).set({
+        name: "CrEpErIa_Token",
+        value: json,
+        httpOnly: true, //? true :solo el codigo del servidor puede acceder a la cookie
+        path: "",
+    });
 
     return {
         errors: [],
