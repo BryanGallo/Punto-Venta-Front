@@ -1,13 +1,13 @@
 import Image from "next/image";
 
-export default function LogoLogin() {
+export default function LogoAdmin() {
     return (
         <Image
             src="/logo.jpg"
             alt="Logo Local"
-            width={2000}
-            height={2000}
-            className="max-w-96 w-32 lg:w-96  rounded-full"
+            width={200}
+            height={200}
+            className="max-w-96 w-16 rounded-full"
             priority
         />
     );
