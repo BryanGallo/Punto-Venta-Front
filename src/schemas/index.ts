@@ -35,3 +35,18 @@ export const LoginSchema = z.object({
         .min(1, { message: "El email es obligatorio" }),
     password: z.string().min(1, { message: "La Contraseña es obligatoria" }),
 });
+
+export const UserSchema = z.object({
+    user: z.object({
+        id: z.string({message:"Debe"}),
+        name: z.string(),
+        email: z.string().email(),
+        isActive: z.boolean(),
+        roles: z
+            .object({
+                id: z.number(),
+                name: z.string(),
+            })
+            .array(),
+    }),
+});
