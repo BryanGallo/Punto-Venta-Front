@@ -1,4 +1,4 @@
-import Logo from "@/components/ui/Logo";
+import LogoLogin from "@/components/ui/Logo";
 import ToastNotification from "@/components/ui/ToastNotification";
 
 export default function AuthLayout({
@@ -11,7 +11,7 @@ export default function AuthLayout({
             <div className="lg:grid lg:grid-cols-2 lg:min-h-screen">
                 <div className="bg-purple-950 min-h-32 lg:bg-auth lg:bg-30 bg-no-repeat bg-left-bottom flex justify-center items-center">
                     <div className="w-96 py-10 lg:py-20 flex justify-center items-center">
-                        <Logo />
+                        <LogoLogin />
                     </div>
                 </div>
                 <div className="p-3 lg:py-10 flex flex-col justify-center items-center">
