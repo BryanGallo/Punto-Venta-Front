@@ -11,11 +11,8 @@ export default function RegisterPage() {
     return (
         <>
             <h1 className="font-black text-5xl text-purple-950 text-center">
-                Crea una cuenta
+                Crea una <span className="text-amber-500">cuenta</span>
             </h1>
-            <p className="text-3xl font-bold text-center">
-                y vende tus <span className="text-amber-500">productos</span>
-            </p>
             <RegisterForm />
             <nav className="mt-10 flex flex-col space-y-2">
                 <Link

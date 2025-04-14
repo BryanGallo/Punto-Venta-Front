@@ -3,11 +3,11 @@ import Image from "next/image";
 export default function Logo() {
     return (
         <Image
-            src="/logo.svg"
+            src="/logo.jpg"
             alt="Logo Local"
-            width={0}
-            height={0}
-            className="max-w-96 w-96"
+            width={2000}
+            height={2000}
+            className="max-w-96 w-32 lg:w-96  rounded-full"
             priority
         />
     );
