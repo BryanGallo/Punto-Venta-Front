@@ -1,3 +1,4 @@
+import AdminMenu from "@/components/admin/AdminMenu";
 import LogoAdmin from "@/components/ui/LogoAdmin";
 import ToastNotification from "@/components/ui/ToastNotification";
 import Link from "next/link";
@@ -17,7 +18,7 @@ export default async function AdminLayout({
                         </Link>
                     </div>
                     <div className="">
-                        <button className="text-white" type="button">Cerrar Sesión</button>
+                        <AdminMenu />
                     </div>
                 </div>
             </header>
@@ -27,7 +28,9 @@ export default async function AdminLayout({
                     <p>Prueba</p>
                     <p>Prueba</p>
                 </div>
-                <div className="w-11/12 p-3 border-4 border-amber-500">{children}</div>
+                <div className="w-11/12 p-3 border-4 border-amber-500">
+                    {children}
+                </div>
             </section>
             <ToastNotification />
 
