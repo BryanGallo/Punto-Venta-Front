@@ -52,7 +52,7 @@ export async function login(prevState: ActionStateType, formData: FormData) {
     //* Setear Cookie
     (await cookies()).set({
         name: "CrEpErIa_Token",
-        value: json,
+        value: JSON.stringify(json.token),
         httpOnly: true, //? true :solo el codigo del servidor puede acceder a la cookie
         path: "",
     });
