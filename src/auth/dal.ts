@@ -1,9 +1,9 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import { cache } from "react";
 import { UserSchema } from "../schemas";
 
-export const verifySession = async () => {
-
+export const verifySession = cache(async () => {
     const token = (await cookies()).get("CrEpErIa_Token")?.value;
 
     if (!token) {
@@ -31,4 +31,4 @@ export const verifySession = async () => {
         user: result.data,
         isAuth: true,
     };
-};
+});
