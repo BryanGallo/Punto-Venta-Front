@@ -1,9 +1,26 @@
 "use client";
 
+import forgotPassword from "@/actions/forgot-password-action";
+import { useActionState, useEffect } from "react";
+import { toast } from "react-toastify";
+
 export default function ForgotPasswordForm() {
+    const [state, dispach] = useActionState(forgotPassword, {
+        errors: [],
+        success: "",
+    });
+
+    console.log(state.errors);
+
+    useEffect(() => {
+        if (state.errors) {
+            state.errors.map((error) => toast.error(error));
+        }
+    }, [state]);
+
     return (
         <>
-            <form className=" mt-14 space-y-5" noValidate>
+            <form className=" mt-14 space-y-5" noValidate action={dispach}>
                 <div className="flex flex-col gap-2 mb-10">
                     <label className="font-bold text-2xl">Email</label>
 

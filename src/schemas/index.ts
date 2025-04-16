@@ -38,7 +38,7 @@ export const LoginSchema = z.object({
 
 export const UserSchema = z.object({
     user: z.object({
-        id: z.string({message:"Debe"}),
+        id: z.string({ message: "Debe" }),
         name: z.string(),
         email: z.string().email(),
         isActive: z.boolean(),
@@ -49,4 +49,11 @@ export const UserSchema = z.object({
             })
             .array(),
     }),
+});
+
+export const ForgetPasswordSchema = z.object({
+    email: z
+        .string()
+        .email({ message: "Email no valido" })
+        .min(1, { message: "El email es obligatorio" }),
 });
