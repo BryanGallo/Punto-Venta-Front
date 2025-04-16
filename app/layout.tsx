@@ -7,6 +7,9 @@ const outfit = Outfit({ subsets: ["latin"] });
 export const metadata: Metadata = {
     title: "Punto de Venta",
     description: "Punto de venta",
+    icons: {
+        icon: "/logo.jpg", 
+    },
 };
 
 export default function RootLayout({
