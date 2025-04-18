@@ -1,7 +1,7 @@
 "use client";
 
 import forgotPassword from "@/actions/forgot-password-action";
-import { useActionState, useEffect } from "react";
+import { useActionState, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 export default function ForgotPasswordForm() {
@@ -10,9 +10,18 @@ export default function ForgotPasswordForm() {
         success: "",
     });
 
-    console.log(state.errors);
+    const [formValues, setFormValues] = useState({
+        email: "",
+    });
 
     useEffect(() => {
+        if (state.success) {
+            toast.success(state.success);
+            setFormValues({
+                email: "",
+            });
+        }
+
         if (state.errors) {
             state.errors.map((error) => toast.error(error));
         }
@@ -29,6 +38,10 @@ export default function ForgotPasswordForm() {
                         placeholder="Email de Registro"
                         className="w-full border border-gray-300 p-3 rounded-lg"
                         name="email"
+                        value={formValues.email}
+                        onChange={(e) =>
+                            setFormValues({ email: e.target.value })
+                        }
                     />
                 </div>
 

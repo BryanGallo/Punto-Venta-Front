@@ -1,6 +1,10 @@
 "use server";
 
-import { ForgetPasswordSchema } from "@/src/schemas";
+import {
+    ErrorSchema,
+    ForgetPasswordSchema,
+    SuccessSchema,
+} from "@/src/schemas";
 
 type ActionStateType = {
     errors: string[];
@@ -26,8 +30,35 @@ export default async function forgotPassword(
         return { errors, success: "" };
     }
 
+    const url = `${process.env.API_URL}/auth/forgot-password`;
+
+    const req = await fetch(url, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            email: forgotPasswordEmail.data.email,
+        }),
+    });
+
+    const json = await req.json();
+
+    // console.log(json);
+
+    if (!req.ok) {
+        const { message } = ErrorSchema.parse(json);
+        return {
+            errors: message,
+            success: "",
+        };
+    }
+
+    const { message } = SuccessSchema.parse(json);
+    // console.log(message);
+
     return {
         errors: [],
-        success: "",
+        success: message,
     };
 }
