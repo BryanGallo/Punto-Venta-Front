@@ -1,6 +1,6 @@
 "use client";
 
-import { register } from "@/actions/create-account-action";
+import { register } from "@/actions/auth/create-account-action";
 import { useActionState, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 

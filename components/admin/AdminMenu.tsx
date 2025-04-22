@@ -1,6 +1,6 @@
 "use client";
 
-import logout from "@/actions/logout-action";
+import logout from "@/actions/auth/logout-action";
 
 export default function AdminMenu() {
     return (

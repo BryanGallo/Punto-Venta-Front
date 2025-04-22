@@ -11,7 +11,7 @@ type ActionStateType = {
     success: string;
 };
 
-export default async function forgotPassword(
+export async function forgotPassword(
     prevState: ActionStateType,
     formData: FormData
 ) {
