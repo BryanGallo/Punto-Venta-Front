@@ -57,3 +57,7 @@ export const ForgetPasswordSchema = z.object({
         .email({ message: "Email no valido" })
         .min(1, { message: "El email es obligatorio" }),
 });
+
+export const ValidateTokenSchema = z.string().length(6, {
+    message: "El token no es valido",
+});
