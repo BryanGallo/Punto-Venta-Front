@@ -1,4 +1,4 @@
-import ValidateTokenForm from "@/components/auth/ValidateTokenForm";
+import PasswordResetHandler from "@/components/auth/PasswordResetHandler";
 
 export default function page() {
     return (
@@ -10,7 +10,7 @@ export default function page() {
                 Ingresa el código que recibiste
                 <span className="text-amber-500"> por email</span>
             </p>
-            <ValidateTokenForm />
+            <PasswordResetHandler />
         </div>
     );
 }
