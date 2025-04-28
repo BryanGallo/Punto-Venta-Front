@@ -61,3 +61,17 @@ export const ForgetPasswordSchema = z.object({
 export const ValidateTokenSchema = z.string().length(6, {
     message: "El token no es valido",
 });
+
+export const ResetPasswordSchema = z
+    .object({
+        password: z.string().min(6, {
+            message: "La contraseña debe ser de mínimo de 6 caracteres",
+        }),
+        password_confirmation: z.string().min(6, {
+            message: "Las contraseñas no son iguales",
+        }),
+    })
+    .refine((data) => data.password === data.password_confirmation, {
+        message: "Las contraseñas deben ser iguales",
+        path: ["password_confirmation"], //*Indicamos donde debe colocarse el error
+    });

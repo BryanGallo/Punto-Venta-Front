@@ -1,12 +1,40 @@
 "use client";
 
-import { useState } from "react";
+import { useActionState, useEffect, useState } from "react";
+import { resetPassword } from "@/actions/auth/reset-password-action";
+import { toast } from "react-toastify";
+import { redirect } from "next/navigation";
 
-export default function ResetPasswordForm() {
+export default function ResetPasswordForm({ token }: { token: string }) {
     const [formValues, setFormValues] = useState({
         password: "",
         password_confirmation: "",
     });
+
+    const resetPasswordToken = resetPassword.bind(null, token);
+    const [state, dispatch] = useActionState(resetPasswordToken, {
+        errors: [],
+        success: "",
+    });
+
+    console.log(state);
+
+    useEffect(() => {
+        if (state.success) {
+            setFormValues({
+                password: "",
+                password_confirmation: "",
+            });
+            toast.success(state.success, {
+                onClose: () => {
+                    redirect("/auth/login");
+                },
+            });
+        }
+        if (state.errors) {
+            state.errors.map((error) => toast.error(error));
+        }
+    }, [state]);
 
     const handle = async (e: React.ChangeEvent<HTMLInputElement>) => {
         setFormValues((prevState) => ({
@@ -16,7 +44,7 @@ export default function ResetPasswordForm() {
     };
 
     return (
-        <form className=" mt-14 space-y-5" noValidate>
+        <form className=" mt-14 space-y-5" noValidate action={dispatch}>
             <div className="flex flex-col gap-5">
                 <label className="font-bold text-2xl">Password</label>
 
