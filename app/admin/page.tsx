@@ -1,4 +1,10 @@
 import { verifySession } from "@/src/auth/dal";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Punto de Venta - Admin",
+    description: "Punto de Venta - Admin",
+}
 
 export default async function AdminPage() {
     await verifySession();
