@@ -2,5 +2,5 @@ import { verifySession } from "@/src/auth/dal";
 
 export default async function StorePage() {
     // await verifySession();
-    return <div>Home</div>;
+    return <div>Store</div>;
 }
