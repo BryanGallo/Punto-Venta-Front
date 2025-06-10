@@ -1,6 +1,6 @@
 import PasswordResetHandler from "@/components/auth/PasswordResetHandler";
 
-export default function page() {
+export default function NewPasswordPage() {
     return (
         <div>
             <h1 className="font-black text-6xl text-purple-950">
