@@ -1,6 +1,7 @@
 import { verifySession } from "@/src/auth/dal";
+import { redirect } from "next/navigation";
 
 export default async function StorePage() {
     await verifySession();
-    return <div>Store</div>;
+    redirect("/store/1");
 }
