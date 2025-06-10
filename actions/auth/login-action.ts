@@ -57,5 +57,5 @@ export async function login(prevState: ActionStateType, formData: FormData) {
         path: "",
     });
 
-    redirect("/store");
+    redirect("/store/1");
 }
