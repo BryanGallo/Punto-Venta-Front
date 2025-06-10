@@ -1,6 +1,12 @@
 import { verifySession } from "@/src/auth/dal";
 
-export default async function StorePage() {
-    // await verifySession();
-    return <div>Store</div>;
+type Params = Promise<{
+    categoryId: string;
+}>;
+
+export default async function PageCategory({ params }: { params: Params }) {
+    await verifySession();
+    const { categoryId } = await params;
+
+    return <div>Store2 con id {categoryId} y validate session</div>;
 }

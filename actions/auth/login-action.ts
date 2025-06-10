@@ -53,8 +53,10 @@ export async function login(prevState: ActionStateType, formData: FormData) {
     (await cookies()).set({
         name: "CrEpErIa_Token",
         value: JSON.stringify(json.token),
-        httpOnly: true, //? true :solo el codigo del servidor puede acceder a la cookie
-        path: "",
+        httpOnly: true,
+        sameSite: "lax",
+        path: "/",
+        maxAge: 60 * 60 * 24 // 1 día en segundos
     });
 
     redirect("/store/1");
