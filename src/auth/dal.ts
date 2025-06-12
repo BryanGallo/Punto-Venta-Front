@@ -5,7 +5,7 @@ import { cache } from "react";
 import { UserSchema } from "../schemas";
 
 export const verifySession = cache(async () => {
-    const token = (await cookies()).get("CrEpErIa_Token")?.value;
+    const token = (await cookies()).get(`${process.env.COOKIE_NAME}`)?.value;
 
     if (!token) {
         redirect("/auth/login");

@@ -51,7 +51,7 @@ export async function login(prevState: ActionStateType, formData: FormData) {
 
     //* Setear Cookie
     (await cookies()).set({
-        name: "CrEpErIa_Token",
+        name: `${process.env.COOKIE_NAME}`,
         value: JSON.stringify(json.token),
         httpOnly: true,
         sameSite: "lax",
