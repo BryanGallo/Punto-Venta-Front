@@ -1,4 +1,5 @@
 import { verifySession } from "@/src/auth/dal";
+import { CategorySchema } from "@/src/schemas";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
@@ -30,6 +31,22 @@ export default async function PageCategory({ params }: { params: Params }) {
 
     const products = await getProducts(categoryId);
     console.log(products);
+    const validatedProducts = CategorySchema.safeParse(products);
 
-    return <div>Store2 con id {categoryId} y validate session</div>;
+    if (!validatedProducts.success) {
+        console.log(validatedProducts.error);
+    }
+
+    return (
+        <div>
+            Store2 con id {categoryId} y validate session
+            {validatedProducts.data?.products.map((product) => (
+                <div key={product.id}>
+                    <h2>{product.name}</h2>
+                    <p>{product.price}</p>
+                    <p>{product.inventory}</p>
+                </div>
+            ))}
+        </div>
+    );
 }

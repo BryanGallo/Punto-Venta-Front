@@ -75,3 +75,17 @@ export const ResetPasswordSchema = z
         message: "Las contraseñas deben ser iguales",
         path: ["password_confirmation"], //*Indicamos donde debe colocarse el error
     });
+
+export const CategorySchema = z.object({
+    id: z.number(),
+    name: z.string(),
+    products: z.array(
+        z.object({
+            id: z.number(),
+            name: z.string(),
+            price: z.string(),
+            image: z.string(),
+            inventory: z.number(),
+        })
+    ),
+});
