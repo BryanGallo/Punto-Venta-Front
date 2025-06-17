@@ -94,3 +94,5 @@ export const CategoryWithProductsSchema = z.object({
     name: z.string(),
     products: z.array(ProductSchema),
 });
+
+export type Product = z.infer<typeof ProductSchema>;
