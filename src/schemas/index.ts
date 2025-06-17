@@ -76,16 +76,21 @@ export const ResetPasswordSchema = z
         path: ["password_confirmation"], //*Indicamos donde debe colocarse el error
     });
 
+export const ProductSchema = z.object({
+    id: z.number(),
+    name: z.string(),
+    price: z.string(),
+    image: z.string(),
+    inventory: z.number(),
+});
+
 export const CategorySchema = z.object({
     id: z.number(),
     name: z.string(),
-    products: z.array(
-        z.object({
-            id: z.number(),
-            name: z.string(),
-            price: z.string(),
-            image: z.string(),
-            inventory: z.number(),
-        })
-    ),
+});
+
+export const CategoryWithProductsSchema = z.object({
+    id: z.number(),
+    name: z.string(),
+    products: z.array(ProductSchema),
 });

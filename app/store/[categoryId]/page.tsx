@@ -1,5 +1,5 @@
 import { verifySession } from "@/src/auth/dal";
-import { CategorySchema } from "@/src/schemas";
+import { CategoryWithProductsSchema } from "@/src/schemas";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
@@ -31,7 +31,7 @@ export default async function PageCategory({ params }: { params: Params }) {
 
     const products = await getProducts(categoryId);
     console.log(products);
-    const validatedProducts = CategorySchema.safeParse(products);
+    const validatedProducts = CategoryWithProductsSchema.safeParse(products);
 
     if (!validatedProducts.success) {
         console.log(validatedProducts.error);
