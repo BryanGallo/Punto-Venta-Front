@@ -79,7 +79,7 @@ export const ResetPasswordSchema = z
 export const ProductSchema = z.object({
     id: z.number(),
     name: z.string(),
-    price: z.string(),
+    price: z.coerce.number(),
     image: z.string(),
     inventory: z.number(),
 });
