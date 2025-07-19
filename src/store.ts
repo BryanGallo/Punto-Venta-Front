@@ -17,12 +17,15 @@ export const useStore = create<Store>()(
             const { id: productId } = product;
 
             let updateContents: ShoppingCart = [];
-            
+
             const duplicate = get().contents.findIndex(
                 (item) => item.productId === productId
             );
 
             if (duplicate !== -1) {
+                if (get().contents[duplicate].quantity >= get().contents[duplicate].inventory) {
+                    return;
+                }
                 updateContents = get().contents.map((item) =>
                     item.productId === productId
                         ? { ...item, quantity: item.quantity + 1 }
