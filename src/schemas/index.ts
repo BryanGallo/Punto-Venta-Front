@@ -76,6 +76,7 @@ export const ResetPasswordSchema = z
         path: ["password_confirmation"], //*Indicamos donde debe colocarse el error
     });
 
+//*Usado para el store
 export const ProductSchema = z.object({
     id: z.number(),
     name: z.string(),
@@ -98,3 +99,18 @@ export const CategoryWithProductsSchema = z.object({
 });
 
 export type Product = z.infer<typeof ProductSchema>;
+
+//* Shopping Cart
+export const ShoppingCartContentSchema = ProductSchema.pick({
+    name: true,
+    price: true,
+    image: true,
+    inventory: true,
+}).extend({
+    productId: z.number(),
+    quantity: z.number().min(1, { message: "La cantidad debe ser mayor a 0" }),
+});
+
+export const ShoppingCartSchema = z.array(ShoppingCartContentSchema);
+
+export type ShoppingCart = z.infer<typeof ShoppingCartSchema>;
