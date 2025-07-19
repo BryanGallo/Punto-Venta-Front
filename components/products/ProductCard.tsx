@@ -9,9 +9,9 @@ export default function ProductCard({ product }: { product: Product }) {
                 <Image
                     src={`${process.env.URL_IMAGE}/img/${product.image}`}
                     alt={product.name}
-                    width={400}
-                    height={600}
-                    className="w-full h-52 object-cover"
+                    width={500}
+                    height={500}
+                    className="w-full h-52 object-contain"
                 />
                 <div className="p-3 space-y-2">
                     <h3 className="text-xl font-bold text-gray-600">{product.name}</h3>
