@@ -36,7 +36,7 @@ export default async function PageCategory({ params }: { params: Params }) {
 
     if (!validatedCategory.success) {
         return (
-            <div className="flex flex-col items-center justify-center h-screen">
+            <div className="flex flex-col items-center justify-center">
                 <h1 className="text-2xl font-bold">Error</h1>
                 <p className="text-sm text-gray-500">
                     {category.message}
