@@ -13,7 +13,35 @@ export const useStore = create<Store>()(
         total: 0,
         contents: [],
         addToCart: (product: Product) => {
-            console.log("addToCart", product);
+            // console.log("addToCart", product);
+            const { id: productId } = product;
+
+            let updateContents: ShoppingCart = [];
+            
+            const duplicate = get().contents.findIndex(
+                (item) => item.productId === productId
+            );
+
+            if (duplicate !== -1) {
+                updateContents = get().contents.map((item) =>
+                    item.productId === productId
+                        ? { ...item, quantity: item.quantity + 1 }
+                        : item
+                );
+            } else {
+                updateContents = [
+                    ...get().contents,
+                    {
+                        ...product,
+                        quantity: 1,
+                        productId: productId,
+                    },
+                ];
+            }
+
+            set(() => ({
+                contents: updateContents,
+            }));
         },
     }))
 );
