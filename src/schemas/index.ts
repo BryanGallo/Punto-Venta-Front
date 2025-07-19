@@ -89,6 +89,8 @@ export const CategorySchema = z.object({
     name: z.string(),
 });
 
+export const CategoriesResponseSchema = z.array(CategorySchema);
+
 export const CategoryWithProductsSchema = z.object({
     id: z.number(),
     name: z.string(),
