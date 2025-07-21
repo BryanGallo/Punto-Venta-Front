@@ -1,4 +1,5 @@
 import { CartItem } from "@/src/schemas";
+import { formatCurrency } from "@/src/utils";
 import Image from "next/image";
 
 export default function ShoppingCartItem({ item }: { item: CartItem }) {
@@ -16,7 +17,7 @@ export default function ShoppingCartItem({ item }: { item: CartItem }) {
             </div>
             <div className="flex-auto space-y-2">
                 <h3 className="text-gray-900">{item.name}</h3>
-                <p>{item.price}</p>
+                <p>{formatCurrency(item.price)}</p>
                 <select
                     className="w-32 text-center p-2 rounded-lg bg-white"
                     value={item.quantity}
