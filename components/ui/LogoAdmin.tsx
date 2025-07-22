@@ -7,7 +7,7 @@ export default function LogoAdmin() {
             alt="Logo Local"
             width={200}
             height={200}
-            className="max-w-96 w-16 rounded-full"
+            className="max-w-96 w-12 rounded-full"
             priority
         />
     );

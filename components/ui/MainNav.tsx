@@ -44,7 +44,7 @@ export default async function MainNav() {
     }
 
     return (
-        <header className="px-10 py-5 bg-purple-950 flex flex-col md:flex-row justify-between ">
+        <header className="px-6 py-3 bg-purple-950 flex flex-col md:flex-row justify-between ">
             <div className="flex justify-center">
                 <LogoAdmin />
             </div>
