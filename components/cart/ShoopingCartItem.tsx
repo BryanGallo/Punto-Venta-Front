@@ -22,7 +22,14 @@ export default function ShoppingCartItem({ item }: { item: CartItem }) {
                     className="w-32 text-center p-2 rounded-lg bg-white"
                     value={item.quantity}
                     onChange={() => {}}
-                ></select>
+                >
+                    {/* Generando las opciones del select */}
+                    {Array.from({ length: item.inventory }, (_, index) => (
+                        <option key={index} value={index + 1}>
+                            {index + 1}
+                        </option>
+                    ))}
+                </select>
             </div>
             <div className="absolute top-10 -right-0">
                 <button type="button" onClick={() => {}}>
