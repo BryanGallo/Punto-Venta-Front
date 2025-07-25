@@ -6,6 +6,7 @@ interface Store {
     total: number;
     contents: ShoppingCart;
     addToCart: (product: Product) => void;
+    updateQuantity: (id: Product["id"], quantity: number) => void;
 }
 
 export const useStore = create<Store>()(
@@ -45,6 +46,13 @@ export const useStore = create<Store>()(
             set(() => ({
                 contents: updateContents,
             }));
+        },
+        updateQuantity: (id: Product["id"], quantity: number) => {
+            const { contents } = get();
+            const index = contents.findIndex((item) => item.productId === id);
+            if (index !== -1) {
+                contents[index].quantity = quantity;
+            }
         },
     }))
 );
