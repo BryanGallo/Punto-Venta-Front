@@ -1,8 +1,10 @@
 import { CartItem } from "@/src/schemas";
+import { useStore } from "@/src/store";
 import { formatCurrency } from "@/src/utils";
 import Image from "next/image";
 
 export default function ShoppingCartItem({ item }: { item: CartItem }) {
+    const { updateQuantity } = useStore((state) => state.updateQuantity);
     // console.log(item);
     return (
         <li className="flex items-center space-x-6 py-6 relative">
@@ -21,7 +23,9 @@ export default function ShoppingCartItem({ item }: { item: CartItem }) {
                 <select
                     className="w-32 text-center p-2 rounded-lg bg-white"
                     value={item.quantity}
-                    onChange={() => {}}
+                    onChange={(e) => {
+                        updateQuantity(item.productId, Number(e.target.value));
+                    }}
                 >
                     {/* Generando las opciones del select */}
                     {Array.from({ length: item.inventory }, (_, index) => (
