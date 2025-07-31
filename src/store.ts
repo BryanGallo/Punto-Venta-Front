@@ -7,6 +7,7 @@ interface Store {
     contents: ShoppingCart;
     addToCart: (product: Product) => void;
     updateQuantity: (id: Product["id"], quantity: number) => void;
+    removeFromCart: (id: Product["id"]) => void;
 }
 
 export const useStore = create<Store>()(
@@ -52,6 +53,13 @@ export const useStore = create<Store>()(
             const index = contents.findIndex((item) => item.productId === id);
             if (index !== -1) {
                 contents[index].quantity = quantity;
+            }
+        },
+        removeFromCart: (id: Product["id"]) => {
+            const { contents } = get();
+            const index = contents.findIndex((item) => item.productId === id);
+            if (index !== -1) {
+                contents.splice(index, 1);
             }
         },
     }))

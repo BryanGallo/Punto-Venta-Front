@@ -21,7 +21,7 @@ export default function ShoppingCartItem({ item }: { item: CartItem }) {
                 <h3 className="text-gray-900">{item.name}</h3>
                 <p>{formatCurrency(item.price)}</p>
                 <select
-                    className="w-32 text-center p-2 rounded-lg bg-white"
+                    className="w-32 text-center p-2 rounded-lg bg-gray-100"
                     value={item.quantity}
                     onChange={(e) => {
                         updateQuantity(item.productId, Number(e.target.value));
