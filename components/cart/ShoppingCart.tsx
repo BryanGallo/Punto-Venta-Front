@@ -8,15 +8,26 @@ export default function ShoppingCart() {
     // console.log(contents);
     return (
         <>
-            <h2 className="text-2xl font-bold">Resumen de la compra</h2>
-            <ul
-                role="list"
-                className="mt-6 divide-y divide-gray-200 border-t border-gray-200 text-sm text-gray-500"
-            >
-                {contents.map((item) => (
-                    <ShoppingCartItem key={item.productId} item={item} />
-                ))}
-            </ul>
+            {contents.length === 0 ? (
+                <p className="text-center text-gray-500 text-xl">
+                    No hay productos en el carrito
+                </p>
+            ) : (
+                <>
+                    <h2 className="text-2xl font-bold">Resumen de la compra</h2>
+                    <ul
+                        role="list"
+                        className="mt-6 divide-y divide-gray-200 border-t border-gray-200 text-sm text-gray-500"
+                    >
+                        {contents.map((item) => (
+                            <ShoppingCartItem
+                                key={item.productId}
+                                item={item}
+                            />
+                        ))}
+                    </ul>
+                </>
+            )}
         </>
     );
 }
