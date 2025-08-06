@@ -8,6 +8,7 @@ interface Store {
     addToCart: (product: Product) => void;
     updateQuantity: (id: Product["id"], quantity: number) => void;
     removeFromCart: (id: Product["id"]) => void;
+    calculateTotal: () => void;
 }
 
 export const useStore = create<Store>()(
@@ -61,6 +62,11 @@ export const useStore = create<Store>()(
             if (index !== -1) {
                 contents.splice(index, 1);
             }
+        },
+        calculateTotal: () => {
+            const { contents } = get();
+            const total = contents.reduce((acc, item) => acc + item.quantity * item.price, 0);
+            set({ total });
         },
     }))
 );
