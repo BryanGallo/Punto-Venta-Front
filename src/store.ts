@@ -48,6 +48,7 @@ export const useStore = create<Store>()(
             set(() => ({
                 contents: updateContents,
             }));
+            get().calculateTotal();
         },
         updateQuantity: (id: Product["id"], quantity: number) => {
             const { contents } = get();
@@ -55,6 +56,7 @@ export const useStore = create<Store>()(
             if (index !== -1) {
                 contents[index].quantity = quantity;
             }
+            get().calculateTotal();
         },
         removeFromCart: (id: Product["id"]) => {
             const { contents } = get();
@@ -62,6 +64,7 @@ export const useStore = create<Store>()(
             if (index !== -1) {
                 contents.splice(index, 1);
             }
+            get().calculateTotal();
         },
         calculateTotal: () => {
             const { contents } = get();
