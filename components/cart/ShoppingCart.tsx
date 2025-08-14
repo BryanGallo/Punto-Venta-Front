@@ -2,10 +2,12 @@
 
 import { useStore } from "@/src/store";
 import ShoppingCartItem from "./ShoopingCartItem";
+import Amount from "./Amount";
 
 export default function ShoppingCart() {
     const contents = useStore((state) => state.contents);
     // console.log(contents);
+    const total = useStore((state) => state.total);
     return (
         <>
             {contents.length === 0 ? (
@@ -26,6 +28,12 @@ export default function ShoppingCart() {
                             />
                         ))}
                     </ul>
+                    <dl className="space-y-6 border-t bg-gray-300 rounded-lg p-6 mt-6 text-sm font-medium text-gray-500">
+                        <Amount
+                            label="Total a Pagar"
+                            amount={total}
+                        />
+                    </dl>
                 </>
             )}
         </>
