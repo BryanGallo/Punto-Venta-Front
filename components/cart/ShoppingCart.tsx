@@ -3,6 +3,7 @@
 import { useStore } from "@/src/store";
 import ShoppingCartItem from "./ShoopingCartItem";
 import Amount from "./Amount";
+import CouponForm from "./CouponForm";
 
 export default function ShoppingCart() {
     const contents = useStore((state) => state.contents);
@@ -34,6 +35,7 @@ export default function ShoppingCart() {
                             amount={total}
                         />
                     </dl>
+                    <CouponForm />
                 </>
             )}
         </>
